@@ -8,7 +8,6 @@ import config from "./config.mjs"
 import { rehypeHeadingIds } from "@astrojs/markdown-remark"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import { spawnSync } from "child_process"
-
 // https://astro.build/config
 export default defineConfig({
   site: config.url,
@@ -306,16 +305,4 @@ export default defineConfig({
       ],
     }),
   ],
-})
-
-function configSchema() {
-  return {
-    name: "configSchema",
-    hooks: {
-      "astro:build:done": async () => {
-        console.log("generating config schema")
-        spawnSync("../opencode/script/schema.ts", ["./dist/config.json", "./dist/tui.json"])
-      },
-    },
-  }
-}
+});
